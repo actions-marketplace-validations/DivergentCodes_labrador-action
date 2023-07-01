@@ -1,0 +1,32 @@
+# action.yaml
+name: 'Run Labrador'
+description: 'Fetch and load values as environment variables'
+inputs:
+  ssm-path-prefix:
+    description: 'SSM Parameter Store base path to recursively fetch values from'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: "Add this action's path to executable path"
+      shell: bash
+      # This is required for the action to find the shell scripts.
+      run: |
+        echo "${{ github.action_path }}" >> $GITHUB_PATH
+        echo "${{ github.action_path }}/scripts" >> $GITHUB_PATH
+
+    - name: Download Labrador
+      shell: bash
+      # https://github.com/actions/runner/issues/2473
+      # https://github.com/actions/runner/issues/2525
+      env:
+        GHACTION_LABRADOR_DOCKER_REF: ${{ github.action_ref }}
+      run: download-labrador.sh
+
+    - name: Run Labrador
+      shell: bash
+      env:
+        GHACTION_LABRADOR_AWS_PS: ${{ inputs.ssm-path-prefix }}
+      run: run-labrador.sh
