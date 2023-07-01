@@ -1,5 +1,5 @@
 # action.yaml
-name: 'Run Labrador'
+name: 'Labrador'
 description: 'Fetch and load values as environment variables'
 inputs:
   ssm-path-prefix:
