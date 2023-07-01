@@ -5,8 +5,6 @@
 if [ -z $GHACTION_LABRADOR_AWS_PS ]; then
     echo "No AWS SSM Parameter Store path defined in env var: GHACTION_LABRADOR_AWS_PS"
     exit 1
-else
-    echo "GHACTION_LABRADOR_AWS_PS=$GHACTION_LABRADOR_AWS_PS"
 fi
 
 # Determine outfile.
