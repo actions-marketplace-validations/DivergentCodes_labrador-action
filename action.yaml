@@ -6,6 +6,10 @@ inputs:
     description: 'SSM Parameter Store base path to recursively fetch values from'
     required: true
 
+branding:
+  color: yellow
+  icon: download-cloud
+
 runs:
   using: 'composite'
   steps:
