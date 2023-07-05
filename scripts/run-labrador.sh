@@ -12,4 +12,4 @@ fi
 # Run Labrador.
 ./labrador fetch \
     --verbose \
-    --out-file "$GHACTION_LABRADOR_OUTFILE"
+    --outfile "$GHACTION_LABRADOR_OUTFILE"
