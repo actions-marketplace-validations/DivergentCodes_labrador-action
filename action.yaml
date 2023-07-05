@@ -29,6 +29,9 @@ runs:
         GHACTION_LABRADOR_DOCKER_REF: ${{ github.action_ref }}
       run: download-labrador.sh
 
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+
     - name: Run Labrador
       shell: bash
       env:
