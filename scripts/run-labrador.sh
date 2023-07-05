@@ -1,13 +1,8 @@
 #!/bin/bash
 
 
-# Determine AWS SSM Parameter Store path.
-if [ -z $GHACTION_LABRADOR_AWS_PS ]; then
-    echo "No AWS SSM Parameter Store path defined in env var: GHACTION_LABRADOR_AWS_PS"
-    exit 1
-fi
-
-# Determine outfile.
+# Determine outfile. Use local file for development,
+# and env file in Github Actions.
 if [ -n $GITHUB_ENV ]; then
     GHACTION_LABRADOR_OUTFILE="$GITHUB_ENV"
 else
@@ -17,5 +12,4 @@ fi
 # Run Labrador.
 ./labrador fetch \
     --verbose \
-    --out-file "$GHACTION_LABRADOR_OUTFILE" \
-    --aws-ps "$GHACTION_LABRADOR_AWS_PS"
+    --outfile "$GHACTION_LABRADOR_OUTFILE"
