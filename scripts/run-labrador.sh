@@ -9,7 +9,13 @@ else
     GHACTION_LABRADOR_OUTFILE=./labrador-outfile.txt
 fi
 
+# Assemble optional CLI args.
+OPTIONAL_ARGS=""
+if [ -n "$GHACTION_LABRADOR_CONFIG_FILE" ]; then
+    echo "Using alternate config file: $GHACTION_LABRADOR_CONFIG_FILE"
+    OPTIONAL_ARGS=" --config $GHACTION_LABRADOR_CONFIG_FILE "
+fi
+
 # Run Labrador.
-./labrador fetch \
-    --verbose \
-    --outfile "$GHACTION_LABRADOR_OUTFILE"
+echo "./labrador fetch --verbose --outfile $GHACTION_LABRADOR_OUTFILE $OPTIONAL_ARGS"
+./labrador fetch --verbose --outfile "$GHACTION_LABRADOR_OUTFILE" $OPTIONAL_ARGS
